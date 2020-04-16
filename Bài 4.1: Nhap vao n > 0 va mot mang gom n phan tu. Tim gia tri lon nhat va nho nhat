@@ -1,4 +1,3 @@
-// nhap vao n > 0 va mot mang gom n phan tu. Tim gia tri lon nhat va nho nhat
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
