@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int input_arr(int* a, int* n) {
+	srand(time(NULL));
+	do {
+		printf("n > 0: ");
+		scanf("%d", n);
+	} while (*n < 1);
+	for (int i = 0; i < *n; i++)
+	{
+		a[i] = rand() % 100 - 50;
+		printf("a[%d] = %d\n", i, a[i]);
+	}
+}
+void find_max_min(int* a, int n, int* min, int* max) {
+	for (int i = 0; i < n; i++)
+	{
+		if (*max < a[i]) *max = a[i];
+		if (*min > a[i]) *min = a[i];
+	}
+}
+void find_max2_min2(int* a, int n,int &max,int &min) {
+	int max2, min2;
+	if (max - min)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			if (max2 != max && max2 < a[i]) max2 = a[i];
+			if (min2 != min && min2 > a[i]) min2 = a[i];
+		}
+		printf("2nd lowest value = %d\n", min2);
+		printf("2nd lowest value = %d\n", max2);
+	}
+	else
+		puts("No Found");
+}
+int main()
+{
+	int n;
+	int a[100];
+	input_arr(a, &n);
+	int min = a[0], max = a[0];
+	find_max_min(a, n, &min, &max);
+	find_max2_min2(a, n, min, max);
+	return 0;
+}
