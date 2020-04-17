@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+int input_arr(int* a, int* n) {
+	srand(time(NULL));
+	do {
+		printf("n > 0: ");
+		scanf("%d", n);
+	} while (*n < 1);
+	for (int i = 0; i < *n; i++)
+	{
+		a[i] = rand() % 100 - 50;
+		printf("a[%d] = %d\n", i, a[i]);
+	}
+}
+void swap(int* a, int* b) {
+	int k = *a;
+	*a = *b;
+	*b = k;
+}
+void selectionSort(int* a, int n) {
+	puts("\nafter sorting ascending\n");
+	int index;
+	for (int i = 0; i < n - 1; i++)
+	{
+		index = i;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[index] > a[j]) index = j;
+		}
+		if (index > i) swap(&a[index], &a[i]);
+	}
+}
+
+void decrease_sort(int* a, int n) {
+	puts("after sorting descending\n");
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = n - 1; j > i; j--)
+		{
+			if (a[j] > a[j - 1]) swap(&a[j], &a[j - 1]);
+		}
+	}
+}
+void output_arr(int* a, int n) {
+	for (int i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+}
+
+int main() {
+	int a[100];
+	int n;
+	input_arr(a, &n);
+	decrease_sort(a, n);
+	output_arr(a, n);
+	selectionSort(a, n);
+	output_arr(a, n);
+	return 0;
+}
