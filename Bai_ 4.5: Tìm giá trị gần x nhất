@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<math.h>
+int input_arr(int* a, int* n) {
+	srand(time(NULL));
+	do {
+		printf("n > 0: ");
+		scanf("%d", n);
+	} while (*n < 1);
+	for (int i = 0; i < *n; i++)
+	{
+		a[i] = rand() % 50 - 25;
+		//scanf("%d", &a[i]);
+		printf("a[%d] = %d\n", i, a[i]);
+	}
+}
+void closest_number_x(int* a, int n, int x) 
+{
+	int k = 0, k1 = 0; // có tối đa 2 phần tử có giá trị gần nhất
+	printf("x = ");
+	scanf("%d", &x);
+	int vabs = abs(a[0] - x);
+	int mark = 0;				// biến đánh dấu có k1
+	for (int i = 0; i < n; i++)
+	{
+		int j = abs(a[i] - x); // biến lấy giá trị của trị tuyệt đối
+		if (j)					// nếu trị tuyệt đối có giá trị bằng 0 thì gán k rồi break
+		{
+			if (j < vabs)
+			{
+				vabs = j;
+				k = a[i];
+			}
+			if (j == vabs && vabs - abs(a[0] - x) && a[i] - k)
+			{
+				k1 = a[i];
+				mark = 1;
+			}
+		}
+		else
+		{
+			k = a[i];
+			break;
+		}
+	}
+	if (mark) 
+		printf("closest number x: %d and %d", k, k1);
+	else
+		printf("closest number x: %d", k);
+}
+int main()
+{
+	int n;
+	int a[100];
+	int x = 0;
+	input_arr(a, &n);
+	closest_number_x(a, n, x);
+	return 0;
+}
