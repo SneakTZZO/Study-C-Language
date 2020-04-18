@@ -21,7 +21,7 @@ void closest_number_x(int* a, int n, int x)
 	printf("x = ");
 	scanf("%d", &x);
 	int vabs = abs(a[0] - x);
-	int mark = 0;				// biến đánh dấu có k1
+	int mark = 0;				// biến đánh dấu có hay không có k1
 	for (int i = 0; i < n; i++)
 	{
 		int j = abs(a[i] - x); // biến lấy giá trị của trị tuyệt đối
