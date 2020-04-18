@@ -30,7 +30,7 @@ void average_odd_and_even(int* a, int n)
 			sumEven += a[i];
 		}
 	}
-	printf("The average of the odd value = %.3f", 1.0 * sumOdd / numOddVal);
+	printf("The average of the odd value = %.3f\n", 1.0 * sumOdd / numOddVal);
 	printf("The average of the even value = %.3f", 1.0 * sumEven / numEvenVal);
 }
 int main()
