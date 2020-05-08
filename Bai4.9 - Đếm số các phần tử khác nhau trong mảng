@@ -1,0 +1,82 @@
+# Study-C-Language
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int input_arr(int* a, int* n) {
+	srand(time(NULL));
+	do {
+		printf("n > 0: ");
+		scanf("%d", n);
+	} while (*n < 1);
+	for (int i = 0; i < *n; i++)
+	{
+		a[i] = rand() % 5;
+		printf("a[%d] = %d\n", i, a[i]);
+	}
+}
+void swap(int* a, int* b) {
+	int k = *a;
+	*a = *b;
+	*b = k;
+}
+void delete_arr(int* a, int* n, int index)
+{
+	for (int i = index; i < *n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	*n = *n - 1;
+}
+//cách 1
+void number_of_times_appear(int* a, int n)
+{
+	int count; // biến đếm số lần xuất hiện
+	for (int i = 0; i < n - 1; i++)
+	{
+		count = 1;						// số lần xuất hiện >= 1
+		for (int j = i + 1; j < n; j++) // xét những phần tử có chỉ số lớn hơn i
+		{
+			if (a[j] == a[i])
+			{
+				swap(&a[j], &a[i]);		// Hoán đổi vị trí a[j] và a[i] để phần tử có cùng giá trị xếp gần nhau
+				i++;	//đồng thời tăng i >> không xét đến những phần tử đã từng xét
+				count++;
+			}
+		}
+		printf("number of times %d value appears: %d\n", a[i], count);
+	}
+}
+//cách 2
+void number_of_times_appear_(int* a, int n)
+{
+	int count;
+	int sign;
+	for (int i = 0; i < n - 1; i++)
+	{
+		count = 1;
+		sign = 1;
+		for (int k = i - 1; k >= 0; k--)
+		{
+			if (a[k] == a[i]) sign = 0;
+		}
+		if (sign)
+		{
+			for (int j = i + 1; j < n; j++)
+			{
+				if (a[j] == a[i])
+				{
+					count++;
+				}
+			}
+			printf("number of times %d value appears: %d\n", a[i], count);
+		}
+	}
+}
+int main()
+{
+	int a[100];
+	int n;
+	input_arr(a, &n);
+	number_of_times_appear(a, n);
+	return 0;
+}
